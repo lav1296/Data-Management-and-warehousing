@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceSets.main.java.srcDirs = ['src']
+
+
+repositories {
+    mavenCentral()
+
+}
+jar{
+    manifest {
+        attributes(
+                'Main-Class':'org.example.Main'
+        )
+    }
+}
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+        exclude "META-INF/*.txt"
+        exclude "META-INF/*.json"
+    }
+    with jar
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation "org.apache.spark:spark-core_2.11:1.4.1"
+}
+
+
+test {
+    useJUnitPlatform()
+}

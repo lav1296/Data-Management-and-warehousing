@@ -1,0 +1,9 @@
+﻿tablename,databaseType
+faq,local
+news,local
+user,local
+amenity,remote
+park,remote
+parkamenity,remote
+parkreservation,remote
+reservationavailibility,remote
