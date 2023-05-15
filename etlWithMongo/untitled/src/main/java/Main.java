@@ -40,7 +40,7 @@ public class Main {
 
             //uploading documents to mongodb
             //connection code copied from mongodb connection suggestions https://cloud.mongodb.com/
-            ConnectionString connectionString = new ConnectionString("mongodb+srv://dataa3:rootroot@cluster0.zmhpfgm.mongodb.net/?retryWrites=true&w=majority");
+            ConnectionString connectionString = new ConnectionString("");
             MongoClientSettings settings = MongoClientSettings.builder()
                     .applyConnectionString(connectionString)
                     .serverApi(ServerApi.builder()
